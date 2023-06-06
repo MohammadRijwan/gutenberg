@@ -138,8 +138,8 @@ class _BookScreenState extends State<BookScreen> {
 }
 
 class BookDetails extends StatelessWidget {
-  final vm;
-  const BookDetails({Key? key, this.vm}) : super(key: key);
+  final BookVm vm;
+  const BookDetails({Key? key, required this.vm}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -149,45 +149,50 @@ class BookDetails extends StatelessWidget {
       child: PaginationView<Result>(
         // key: UniqueKey(),
         preloadedItems: [],
-        itemBuilder: (BuildContext context, Result book, int index) => Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              flex: 6,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(15),
-                child: Image.network('${book.formats.imageJpeg}',
-                    fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) => Container(
-                          width: size.width,
-                          color: AppColors.darkGrey.withOpacity(0.2),
-                          child: const Center(child: Text('No Image')),
-                        )),
-              ),
-            ),
-            SizedBox(height: 5.h),
-            Flexible(
-              child: Text(
-                book.title ?? '',
-                style: TextStyle(
-                  fontSize: 14.sp,
-                  color: AppColors.veryDarkGrey,
-                  fontWeight: FontWeight.w900,
+        itemBuilder: (BuildContext context, Result book, int index) => InkWell(
+          onTap: () {
+            vm.onCardTap(book, context);
+          },
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                flex: 6,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: Image.network('${book.formats.imageJpeg}',
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) => Container(
+                            width: size.width,
+                            color: AppColors.darkGrey.withOpacity(0.2),
+                            child: const Center(child: Text('No Image')),
+                          )),
                 ),
               ),
-            ),
-            SizedBox(height: 5.h),
-            Flexible(
-              child: Text(
-                book.authors.isNotEmpty ? book.authors.first.name : '',
-                style: TextStyle(
-                  fontSize: 14.sp,
-                  color: AppColors.darkGrey,
-                  fontWeight: FontWeight.w900,
+              SizedBox(height: 5.h),
+              Flexible(
+                child: Text(
+                  book.title ?? '',
+                  style: TextStyle(
+                    fontSize: 14.sp,
+                    color: AppColors.veryDarkGrey,
+                    fontWeight: FontWeight.w900,
+                  ),
                 ),
               ),
-            ),
-          ],
+              SizedBox(height: 5.h),
+              Flexible(
+                child: Text(
+                  book.authors.isNotEmpty ? book.authors.first.name : '',
+                  style: TextStyle(
+                    fontSize: 14.sp,
+                    color: AppColors.darkGrey,
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
         paginationViewType: PaginationViewType.gridView,
         pageFetch: vm.fetch,
@@ -216,8 +221,8 @@ class BookDetails extends StatelessWidget {
 }
 
 class SearchBookDetails extends StatelessWidget {
-  final vm;
-  const SearchBookDetails({Key? key, this.vm}) : super(key: key);
+  final BookVm vm;
+  const SearchBookDetails({Key? key, required this.vm}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -226,45 +231,50 @@ class SearchBookDetails extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 15.0),
       child: PaginationView<Result>(
         preloadedItems: [],
-        itemBuilder: (BuildContext context, Result book, int index) => Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              flex: 6,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(15),
-                child: Image.network('${book.formats.imageJpeg}',
-                    fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) => Container(
-                          width: size.width,
-                          color: AppColors.darkGrey.withOpacity(0.2),
-                          child: const Center(child: Text('No Image')),
-                        )),
-              ),
-            ),
-            SizedBox(height: 5.h),
-            Flexible(
-              child: Text(
-                book.title ?? '',
-                style: TextStyle(
-                  fontSize: 14.sp,
-                  color: AppColors.veryDarkGrey,
-                  fontWeight: FontWeight.w900,
+        itemBuilder: (BuildContext context, Result book, int index) => InkWell(
+          onTap: () {
+            vm.onCardTap(book, context);
+          },
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                flex: 6,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: Image.network('${book.formats.imageJpeg}',
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) => Container(
+                            width: size.width,
+                            color: AppColors.darkGrey.withOpacity(0.2),
+                            child: const Center(child: Text('No Image')),
+                          )),
                 ),
               ),
-            ),
-            SizedBox(height: 5.h),
-            Flexible(
-              child: Text(
-                book.authors.isNotEmpty ? book.authors.first.name : '',
-                style: TextStyle(
-                  fontSize: 14.sp,
-                  color: AppColors.darkGrey,
-                  fontWeight: FontWeight.w900,
+              SizedBox(height: 5.h),
+              Flexible(
+                child: Text(
+                  book.title ?? '',
+                  style: TextStyle(
+                    fontSize: 14.sp,
+                    color: AppColors.veryDarkGrey,
+                    fontWeight: FontWeight.w900,
+                  ),
                 ),
               ),
-            ),
-          ],
+              SizedBox(height: 5.h),
+              Flexible(
+                child: Text(
+                  book.authors.isNotEmpty ? book.authors.first.name : '',
+                  style: TextStyle(
+                    fontSize: 14.sp,
+                    color: AppColors.darkGrey,
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
         paginationViewType: PaginationViewType.gridView,
         pageFetch: vm.onSearchBook,
