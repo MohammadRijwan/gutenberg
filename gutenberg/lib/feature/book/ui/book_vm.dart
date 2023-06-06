@@ -1,10 +1,10 @@
 import 'dart:developer';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gutenberg/feature/book/domain/model/book_res_model.dart';
 import 'package:gutenberg/feature/book/domain/usecase/app_usecase.dart.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 final bookVmProvider = ChangeNotifierProvider.autoDispose<BookVm>((ref) {
   return BookVm();
@@ -125,5 +125,28 @@ class BookVm extends ChangeNotifier {
   void onSearchTap() {
     isSearchEnable = true;
     notifyListeners();
+  }
+
+  Future<void> onCardTap(Result book, BuildContext context) async {
+    if (book.mediaType == 'Text') {
+      try {
+        if (await canLaunchUrl(Uri.parse(book.formats.textHtmlCharsetUtf8 ??
+            book.formats.textPlainCharsetUtf8!))) {
+          await launchUrl(
+              Uri.parse(book.formats.textHtmlCharsetUtf8 ??
+                  book.formats.textPlainCharsetUtf8!),
+              mode: LaunchMode.externalApplication);
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text("“No viewable version available”.")));
+        }
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text("“No viewable version available”.")));
+      }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("“No viewable version available”.")));
+    }
   }
 }
