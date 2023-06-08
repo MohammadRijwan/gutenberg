@@ -71,6 +71,7 @@ class BookVm extends ChangeNotifier {
     if (bookList.length < count) {
       pageNo = pageNo + 1;
       final result = await _useCase.getBooks(pageNo: pageNo);
+      await Future.delayed(const Duration(milliseconds: 1000));
       result?.when(
         success: (success) {
           bookResModel = success;
@@ -99,6 +100,7 @@ class BookVm extends ChangeNotifier {
     bookList.clear();
     if (bookList.length < searchCount) {
       final result = await _useCase.onSearchBook(searchKey: searchKey!);
+      await Future.delayed(const Duration(milliseconds: 1000));
       result?.when(
         success: (success) {
           bookResModel = success;

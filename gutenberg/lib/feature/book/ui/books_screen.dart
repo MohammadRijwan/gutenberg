@@ -148,7 +148,7 @@ class BookDetails extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 15.0),
       child: PaginationView<Result>(
         // key: UniqueKey(),
-        preloadedItems: [],
+        preloadedItems: vm.bookList,
         itemBuilder: (BuildContext context, Result book, int index) => InkWell(
           onTap: () {
             vm.onCardTap(book, context);
@@ -230,7 +230,7 @@ class SearchBookDetails extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15.0),
       child: PaginationView<Result>(
-        preloadedItems: [],
+        preloadedItems: vm.bookList,
         itemBuilder: (BuildContext context, Result book, int index) => InkWell(
           onTap: () {
             vm.onCardTap(book, context);
