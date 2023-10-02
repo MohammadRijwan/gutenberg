@@ -27,6 +27,7 @@ class HomeVm extends ChangeNotifier {
 class MenuModel {
   final String iconPath;
   final String title;
+  final String description;
 
-  MenuModel({required this.iconPath, required this.title});
+  MenuModel({required this.iconPath, required this.title, required this.description});
 }
