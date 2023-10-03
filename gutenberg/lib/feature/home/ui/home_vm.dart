@@ -10,13 +10,13 @@ final homeVmProvider = ChangeNotifierProvider.autoDispose<HomeVm>((ref) {
 
 class HomeVm extends ChangeNotifier {
   List<MenuModel> menuList = [
-    MenuModel(iconPath: 'assets/Fiction.svg', title: 'FICTION'),
-    MenuModel(iconPath: 'assets/Drama.svg', title: 'DRAMA'),
-    MenuModel(iconPath: 'assets/Humour.svg', title: 'HUMOR'),
-    MenuModel(iconPath: 'assets/Politics.svg', title: 'POLITICS'),
-    MenuModel(iconPath: 'assets/Philosophy.svg', title: 'PHILOSOPHY'),
-    MenuModel(iconPath: 'assets/History.svg', title: 'HISTORY'),
-    MenuModel(iconPath: 'assets/Adventure.svg', title: 'ADVENTURE'),
+    MenuModel(iconPath: 'assets/Fiction.svg', title: 'FICTION',description:'This option give you fiction information' ),
+    MenuModel(iconPath: 'assets/Drama.svg', title: 'DRAMA', description:'This options give you drams information' ),
+    MenuModel(iconPath: 'assets/Humour.svg', title: 'HUMOR',description:'This option give you humor information'),
+    MenuModel(iconPath: 'assets/Politics.svg', title: 'POLITICS'description:'This option give you politics information'),
+    MenuModel(iconPath: 'assets/Philosophy.svg', title: 'PHILOSOPHY',description:'This option give you philosophy information'),
+    MenuModel(iconPath: 'assets/History.svg', title: 'HISTORY',description:'This option give you history information'),
+    MenuModel(iconPath: 'assets/Adventure.svg', title: 'ADVENTURE',description:'This option give you adventure information'),
   ];
 
   void onCommonTapped() {
