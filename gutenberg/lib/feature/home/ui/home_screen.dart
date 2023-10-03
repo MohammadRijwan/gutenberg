@@ -44,18 +44,18 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          height: size.height * 0.03,
+                          height: size.height * 0.025,
                         ),
                         Text(
                           'A social cataloging website that allows you to freely search its database of books, annotations, and reviews',
                           style: TextStyle(
-                            fontSize: 20.sp,
+                            fontSize: 18.sp,
                             color: AppColors.veryDarkGrey,
                             fontWeight: FontWeight.w900,
                           ),
                         ),
                         SizedBox(
-                          height: size.height * 0.03,
+                          height: size.height * 0.025,
                         ),
                       ],
                     ),
@@ -107,7 +107,7 @@ class CommonIconCard extends StatelessWidget {
                 child: Text(
                   menuModel.title,
                   style: TextStyle(
-                    fontSize: 20.sp,
+                    fontSize: 18.sp,
                     color: AppColors.veryDarkGrey,
                     fontWeight: FontWeight.w900,
                   ),
